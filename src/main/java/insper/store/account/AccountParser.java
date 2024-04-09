@@ -15,6 +15,7 @@ public class AccountParser {
             .id(account.id())
             .email(account.email())
             .name(account.name())
+            .role(account.role())
             .build();
     }
     
