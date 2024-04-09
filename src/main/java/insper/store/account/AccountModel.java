@@ -35,11 +35,15 @@ public class AccountModel {
     @Column(name = "tx_hash")
     private String hash;
 
+    @Column(name = "tx_role")
+    private String role;
+
     public AccountModel(Account o) {
         this.id = o.id();
         this.name = o.name();
         this.email = o.email();
         this.hash = o.hash();
+        this.role = o.role();
     }
     
     public Account to() {
@@ -48,6 +52,7 @@ public class AccountModel {
             .name(name)
             .email(email)
             .hash(hash)
+            .role(role)
             .build();
     }
     

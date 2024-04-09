@@ -62,8 +62,7 @@ public class AccountResource implements AccountController {
 
     @Override
     public ResponseEntity<AccountOut> update(String id, AccountIn in) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        throw new UnsupportedOperationException("Unimplemented method 'update'");      
     }
 
     @Override
@@ -82,6 +81,15 @@ public class AccountResource implements AccountController {
             .name(roleUser)
             .build();
         return ResponseEntity.ok(account);
+    }
+
+    @Override
+    public ResponseEntity<ChangeRoleOut> changeRole(String id, ChangeRoleIn in, String roleUser) {
+        if (!roleUser.equals("admin")) {
+            throw new UnsupportedOperationException("Only admin can change role");
+        }
+        Account account = accountService.changeRole(id, in.role());
+        return ResponseEntity.ok(ChangeRoleOut.builder().id(account.id()).role(account.role()).build());
     }
     
 }
