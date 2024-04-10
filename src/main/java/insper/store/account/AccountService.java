@@ -8,6 +8,7 @@ import java.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import insper.store.account.ExceptionCustomized.UnauthorizedException;
 import lombok.NonNull;
 
 @Service
@@ -19,6 +20,7 @@ public class AccountService {
     public Account create(Account in) {
         in.hash(calculateHash(in.password()));
         in.password(null);
+        in.role("user");
         return accountRepository.save(new AccountModel(in)).to();
     }
 
@@ -42,4 +44,21 @@ public class AccountService {
         }
     }
     
+    // public Account update(Account in) {
+    //     AccountModel model = new AccountModel(in);
+    //     return accountRepository.save(model).to();
+    // }
+
+    public void delete(@NonNull String id) {
+        accountRepository.deleteById(id);
+    }
+
+    public Account changeRole(@NonNull String id, @NonNull String role) {
+        AccountModel model = accountRepository.findById(id).orElseThrow();
+        if (model.role().equals("admin") ) {
+            throw new UnauthorizedException("Admin role cannot be changed");
+        }
+        model.role(role);
+        return accountRepository.save(model).to();
+    }
 }
