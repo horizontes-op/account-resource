@@ -4,5 +4,6 @@ CREATE TABLE account
     tx_name character varying(256) NOT NULL,
     tx_email character varying(256) NOT NULL,
     tx_hash character varying(256) NOT NULL,
-    CONSTRAINT account_pkey PRIMARY KEY (id_account)
+    tx_role character varying(256) NOT NULL,
+    CONSTRAINT account_pkey PRIMARY KEY (id_account)    
 );
