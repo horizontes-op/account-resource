@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Account') {
             steps {
-                build job: 'account', wait: true
+                build job: 'account push', wait: true
             }
         }
         stage('Build') { 
