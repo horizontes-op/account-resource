@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Account') {
             steps {
-                build job: 'account push', wait: true
+                build job: 'store.account', wait: true
             }
         }
         stage('Build') { 
@@ -14,7 +14,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    docker.build("fernandowi55/account:latest", "-f Dockerfile .")
+                    account = docker.build("fernandowi55/account:latest", "-f Dockerfile .")
                 }
             }
         }
@@ -22,7 +22,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credential') {
-                        docker.image("fernandowi55/account:latest").push()
+                        account.push("latest")
+                       
                     }
                 }
             }
