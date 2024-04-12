@@ -14,7 +14,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    account = docker.build("fernandowi55/account:latest", "-f Dockerfile .")
+                    docker.build("fernandowi55/account:latest", "-f Dockerfile .")
                 }
             }
         }
@@ -22,8 +22,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credential') {
-                        account.push("latest")
-                       
+                        docker.image("fernandowi55/account:latest").push()
                     }
                 }
             }
