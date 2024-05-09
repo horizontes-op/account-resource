@@ -1,4 +1,4 @@
-CREATE TABLE account
+CREATE TABLE if not exists  account.account
 (
     id_account character varying(36) NOT NULL,
     tx_name character varying(256) NOT NULL,

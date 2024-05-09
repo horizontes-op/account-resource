@@ -10,9 +10,11 @@ public class AccountParser {
             .build();
     }
 
+    
+
     public static AccountOut to(Account account) {
         return AccountOut.builder()
-            .id(account.id())
+            .id(account.id())  
             .email(account.email())
             .name(account.name())
             .role(account.role())
