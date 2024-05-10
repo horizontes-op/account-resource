@@ -3,10 +3,10 @@ pipeline {
     stages {
         stage('account interface') {
             steps {
-                build job: 'account', wait: true
+                build job: 'account interface', wait: true
             }
         }
-        stage('account') { 
+        stage('account interface') { 
             steps {
                 sh 'mvn clean package'
             }

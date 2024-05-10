@@ -1,0 +1,37 @@
+# all-in-one.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account
+  template:
+    metadata:
+      labels:
+        app: account
+    spec:
+      containers:
+      - name: account
+        image: fernandowi55/store-account:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: eureka.client.service-url.defaultZone
+          value: http://store-discovery:8761/eureka/
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-service
+spec:
+  selector:
+    app: account
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
