@@ -1,6 +1,6 @@
 package insper.store.account.exceptions;
 
-import org.apache.hc.core5.http.HttpStatus;
+// import org.apache.hc.core5.http.HttpStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
