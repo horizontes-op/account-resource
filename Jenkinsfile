@@ -30,6 +30,12 @@ pipeline {
             }
         }
 
+        stage('Deploy on k8s') {
+            steps {
+                sh "kubectl apply -f ./k8s/account.yaml"
+            }
+        }
+
         
     }
 }
