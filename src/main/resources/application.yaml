@@ -1,10 +1,10 @@
 spring:
   application:
-    name: account-service
+    name: store-account
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://horizontes.c5w4osi0sl7q.us-east-2.rds.amazonaws.com:5432/horizontes}
-    username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:tRD5jASTYt4Wq7}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/store}
+    username: ${DATABASE_USERNAME:store}
+    password: ${DATABASE_PASSWORD:store}
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true
